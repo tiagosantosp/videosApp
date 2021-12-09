@@ -8,5 +8,22 @@
 
 <ion-content [fullscreen]="true" color="light">
   <ion-searchbar placeholder="Buscar" color="primary"></ion-searchbar>
-
+  <!-- List of Text Items -->
+  <ion-list>
+    <ion-item lines="full">
+      <ion-thumbnail slot="start">
+        <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/lJA2RCMfsWoskqlQhXPSLFQGXEJ.jpg" />
+      </ion-thumbnail>
+      <ion-label class="ion-text-wrap">
+        <div>
+          <h1>The Flash (2014)</h1>
+           <p>44m</p>
+           <p>Drama, Sci-Fi & Fantasy</p>
+        </div>
+      </ion-label>
+      <ion-chip outline color="success">
+        <ion-label color="success" >78%</ion-label>
+      </ion-chip>
+    </ion-item>
+  </ion-list>
 </ion-content>
