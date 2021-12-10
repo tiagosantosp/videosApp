@@ -1,18 +1,20 @@
 import { IFilmes } from '../models/IFilme.model';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { DadosService } from '../services/dados.service';
 import { Router } from '@angular/router';
 import { FilmeService } from '../services/filme.service';
-import { IListaFilmes } from '../models/IFilmeApi.model';
+import { IListaFilmes, IFilmeApi } from '../models/IFilmeApi.model';
+import { GeneroService } from '../services/genero.service';
+import { IGenero } from '../models/IGenero.model';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit{
   titulo = 'Videos App';
 
   listaVideos: IFilmes[] = [
@@ -40,12 +42,15 @@ export class Tab1Page {
 
   listaFilmes: IListaFilmes;
 
+  generos: string[] = [];
+
   constructor(
     public alertController: AlertController,
     public toastController: ToastController,
     public dadosService: DadosService,
     public route: Router,
-    public filmeService: FilmeService
+    public filmeService: FilmeService,
+    public generoService: GeneroService,
   ) {}
 
     buscarFilmes(evento: any) {
@@ -59,7 +64,7 @@ export class Tab1Page {
       }
     }
 
-  exibirFilme(filme: IFilmes) {
+  exibirFilme(filme: IFilmeApi) {
     this.dadosService.guardarDados('filme', filme);
     this.route.navigateByUrl('/dados-filme');
   }
@@ -94,5 +99,16 @@ export class Tab1Page {
       duration: 2000,
     });
     toast.present();
+  }
+
+  ngOnInit() {
+    this.generoService.buscarGeneros().subscribe(dados => {
+      console.log('generos: ', dados.genres);
+      dados.genres.forEach(genero => {
+        this.generos[genero.id] = genero.name;
+      });
+
+      this.dadosService.guardarDados('generos', this.generos);
+    });
   }
 }
