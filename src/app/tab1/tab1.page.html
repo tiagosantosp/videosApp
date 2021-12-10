@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" color="light">
-  <ion-searchbar placeholder="Buscar" color="primary"></ion-searchbar>
+  <ion-searchbar placeholder="Buscar" color="primary" (ionChange)="buscarFilmes($event)"></ion-searchbar>
   <!-- List of Text Items -->
   <ion-list>
 
