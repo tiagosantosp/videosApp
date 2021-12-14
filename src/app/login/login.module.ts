@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { VenonPageRoutingModule } from './venon-routing.module';
+import { LoginPageRoutingModule } from './login-routing.module';
 
-import { VenonPage } from './venon.page';
+import { LoginPage } from './login.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    VenonPageRoutingModule
+    LoginPageRoutingModule
   ],
-  declarations: [VenonPage]
+  declarations: [LoginPage]
 })
-export class VenonPageModule {}
+export class LoginPageModule {}
